@@ -37,17 +37,13 @@ the420_quotes = [('I was about to write a good quote but then I got high and for
 from discord.ext import commands
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-initial_extensions = ['cogs.tarkov']
 
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        bot.load_extension(extension)
 
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     await bot.change_presence(activity=discord.Activity(name='Your Mum', type=3))
-
+    
 @bot.event
 async def on_message(message):
     # Bot not replying to themselves
@@ -60,9 +56,9 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # ping pong test command
-# @bot.command()
-# async def ping(ctx):
-#  await ctx.channel.send("pong")
+@bot.command()
+async def ping(ctx):
+    bot.load_extension('cogs.tarkov')
 
 # weather commands
 @bot.command()
